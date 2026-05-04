@@ -1,0 +1,113 @@
+Loading checkpoint shards: 100%|██████████████████████| 14/14 [00:51<00:00,  3.71s/it]
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:0 for open-end generation.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+<fim_prefix>from accelerate import Accelerator
+
+accelerator = Accelerator()
+
+model, optimizer, training_dataloader, scheduler = <fim_suffix><fim_middle>accelerator.prepare(
+    model, optimizer, training_dataloader, scheduler
+)
+
+# + [markdown] id="Y0p8s8860l9R"
+# ## Train
+
+# + id="85-888-10l9S"
+from accelerate.utils import set_seed
+
+set_seed(42)
+
+# + id="5-2831840l9S"
+from tqdm.auto import tqdm
+
+epochs = 10
+
+for epoch in range(epochs):
+    for step, batch
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:0 for open-end generation.
+<fim_prefix>from peft import LoraConfig, TaskType, get_peft_model
+from transformers import AutoModelForCausalLM
+
+peft_config = LoraConfig(<fim_suffix>)<fim_middle>task_type=TaskType.CAUSAL_LM, inference_mode=False)
+model = AutoModelForCausalLM.from_pretrained("bigscience/bloom-560m", load_in_8bit=True)
+model = get_peft_model(model, peft_config)
+model.print_trainable_parameters()
+model.config.use_cache = False
+model.config.pretraining_tp = 1
+model.config.pretraining_pp = 1
+model.config.pretraining_dp = 1
+model.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:0 for open-end generation.
+<fim_prefix>
+# Here is the correct implementation of the two sum code exercise
+# time complexity: O(N)
+# space complexity: O(N)
+def two_sum(arr, target_sum):
+<fim_suffix><fim_middle>    nums = {}
+    for num in arr:
+        if target_sum - num in nums:
+            return [target_sum - num, num]
+        else:
+            nums[num] = True
+    return []
+<file_sep>/python/algorithms/sorting/merge_sort.py
+# Merge Sort
+# Time Complexity: O(N log N)
+# Space Complexity: O(N)
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+   
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:0 for open-end generation.
+<fim_prefix>import math
+import re
+import warnings
+from dataclasses import asdict, dataclass, field, replace
+from enum import Enum
+from typing import List, Optional, Tuple, Union
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from tqdm import tqdm
+from transformers.pytorch_utils import Conv1D
+
+from..config import PeftConfig
+from..import_utils import is_bnb_4bit_available, is_bnb_available
+from..utils import (
+    CLAMP_QUANTILE,
+    COMMON_LAYERS_PATTERN,
+    TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING,
+    ModulesToSaveWrapper,
+    PeftType,
+    _freeze_adapter,
+    _get_submodules,
+    transpose,
+)
+from.tuners_utils import BaseTuner, BaseTunerLayer
+
+@dataclass
+class BottleneckAdapterConfig(PeftConfig):
+    """
+    <fim_suffix>
+    """ <fim_middle>Configuration for the `BottleneckAdapter` model.
+
+    Args:
+        r (:obj:`int`):
+            The number of residual blocks in the adapter.
+        lora_r (:obj:`int`, `optional`):
+            The number of residual blocks in the lora adapter.
+        lora_alpha (:obj:`float`, `optional`):
+            The lora alpha parameter.
+        lora_dropout (:obj:`float`, `optional`):
+            The lora dropout parameter.
+        lora_target_modules (:obj:`List[str]`, `optional`):
+            The list of modules to apply the lora adapter to.
+        l
